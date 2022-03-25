@@ -3,10 +3,11 @@ FROM ubuntu:21.10
 LABEL maintainer="Hassan Raza Pasha"
 
 ARG ASTERISK_VERSION=19
-ARG UDP_PORT
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
+ARG UDP_PORT=5060
+ARG MYSQL_PORT=3306
+ARG MYSQL_DATABASE=asterisk
+ARG MYSQL_USER=sail
+ARG MYSQL_PASSWORD=password
 
 WORKDIR /etc/asterisk
 
@@ -63,6 +64,7 @@ RUN apt update  \
 
 COPY odbc.ini /etc/odbc.ini
 
+RUN sed -i "s/MYSQL_PORT/$MYSQL_PORT/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_USER/$MYSQL_USER/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /etc/odbc.ini;

@@ -36,6 +36,7 @@ services:
             dockerfile: Dockerfile
             args:
                 UDP_PORT: '${UDP_PORT:-5060}'
+                MYSQL_PORT: '${FORWARD_DB_PORT:-3306}'
                 MYSQL_DATABASE: '${DB_DATABASE}'
                 MYSQL_USER: '${DB_USERNAME}'
                 MYSQL_PASSWORD: '${DB_PASSWORD}'

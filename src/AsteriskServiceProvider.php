@@ -4,6 +4,7 @@ namespace Laravel\Asterisk;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Asterisk\Console\InstallCommand;
 use Laravel\Asterisk\Console\PublishCommand;
 
 class AsteriskServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -28,6 +29,7 @@ class AsteriskServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallCommand::class,
                 PublishCommand::class,
             ]);
         }
@@ -42,8 +44,12 @@ class AsteriskServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../runtimes' => $this->app->basePath('asterisk'),
-            ], ['asterisk', 'asterisk-docker']);
+                __DIR__ . '/../config' => $this->app->basePath('asterisk'),
+            ], ['asterisk', 'asterisk-config']);
+
+            $this->publishes([
+                __DIR__ . '/../runtimes' => $this->app->basePath('asterisk/docker'),
+            ], ['asterisk-docker']);
         }
     }
 
@@ -55,6 +61,7 @@ class AsteriskServiceProvider extends ServiceProvider implements DeferrableProvi
     public function provides()
     {
         return [
+            InstallCommand::class,
             PublishCommand::class,
         ];
     }

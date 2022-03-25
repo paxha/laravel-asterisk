@@ -44,7 +44,7 @@ class AsteriskServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config' => $this->app->basePath('asterisk'),
+                __DIR__ . '/../config' => $this->app->basePath('asterisk/config'),
             ], ['asterisk', 'asterisk-config']);
 
             $this->publishes([

@@ -34,9 +34,11 @@ class PublishCommand extends Command
             str_replace(
                 [
                     './vendor/paxha/laravel-asterisk/runtimes',
+                    './vendor/paxha/laravel-asterisk/runtimes/config',
                 ],
                 [
                     './asterisk',
+                    './asterisk/config',
                 ],
                 file_get_contents($this->laravel->basePath('docker-compose.yml'))
             )

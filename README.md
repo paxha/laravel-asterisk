@@ -50,6 +50,30 @@ services:
             - mysql 
 ```
 
+And then
+
+```shell
+sail up -d
+```
+
+To publish the asterisk configuration for i.e. `/etc/asterisk`
+
+```shell
+sail artisan asterisk:install
+```
+
+You will see the directory for asterisk configurations and modify according to your requirement.
+
+```
+asterisk
+│   
+└───config
+    │   asterisk.conf
+    │   modules.conf
+    │   res_odbc.conf
+    │   ...
+```
+
 ## License
 
 Laravel Asterisk is open-sourced software licensed under the [MIT license](LICENSE.md).

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Sail;
+namespace Laravel\Asterisk;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;

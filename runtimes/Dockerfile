@@ -14,7 +14,11 @@ WORKDIR /etc/asterisk
 
 RUN apt update  \
     && apt upgrade -y \
-    && apt install -y wget build-essential subversion \
+    && apt install -y wget  \
+      build-essential \
+      subversion \
+      unixodbc \
+      odbc-mariadb \
     && cd /usr/src/ \
     && wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}-current.tar.gz \
     && tar zxf asterisk-${ASTERISK_VERSION}-current.tar.gz \

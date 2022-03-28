@@ -39,7 +39,7 @@ services:
                 MYSQL_DATABASE: '${DB_DATABASE}'
                 MYSQL_USER: '${DB_USERNAME}'
                 MYSQL_PASSWORD: '${DB_PASSWORD}'
-        image: laravel-asterisk:19
+        image: laravel-asterisk:latest
         ports:
             - '${UDP_PORT:-5060}:5060/udp'
         volumes:

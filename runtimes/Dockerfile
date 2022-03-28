@@ -3,7 +3,6 @@ FROM ubuntu:21.10
 LABEL maintainer="Hassan Raza Pasha"
 
 ARG ASTERISK_VERSION=19
-ARG UDP_PORT=5060
 ARG MYSQL_PORT=3306
 ARG MYSQL_DATABASE=asterisk
 ARG MYSQL_USER=sail
@@ -69,6 +68,6 @@ RUN sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_USER/$MYSQL_USER/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /etc/odbc.ini;
 
-EXPOSE $UDP_PORT/udp
+EXPOSE 5060/udp
 
 CMD ["asterisk", "-vvvdddf"]

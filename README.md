@@ -41,7 +41,8 @@ services:
                 MYSQL_PASSWORD: '${DB_PASSWORD}'
         image: laravel-asterisk:latest
         ports:
-            - '${UDP_PORT:-5060}:5060/udp'
+            - '${SIP_PORT:-5060}:5060/udp'
+            - '${IAX_PORT:-4569}:4569/udp'
         volumes:
             - './vendor/paxha/laravel-asterisk/config:/etc/asterisk'
         networks:

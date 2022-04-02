@@ -43,6 +43,6 @@ RUN sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_USER/$MYSQL_USER/g" /etc/odbc.ini;
 RUN sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /etc/odbc.ini;
 
-EXPOSE 5060/udp
+EXPOSE 5060/udp 4569/udp
 
 CMD ["asterisk", "-vvvdddf"]

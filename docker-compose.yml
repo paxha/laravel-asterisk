@@ -1,0 +1,42 @@
+version: '3'
+services:
+  asterisk.test:
+    build:
+      context: ./runtimes
+      dockerfile: Dockerfile
+      args:
+        MYSQL_PORT: 3306
+        MYSQL_DATABASE: 'asterisk'
+        MYSQL_USER: 'pasha'
+        MYSQL_PASSWORD: 'password'
+    image: laravel-asterisk:current
+    ports:
+      - '5060:5060/udp'
+      - '4569:4569/udp'
+    volumes:
+      - './config:/etc/asterisk'
+    networks:
+      - laravel-asterisk
+    depends_on:
+      - mysql
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: 'asterisk'
+      MYSQL_USER: 'pasha'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - 'laravel-asterisk-mysql:/var/lib/mysql'
+    networks:
+      - laravel-asterisk
+networks:
+  laravel-asterisk:
+    driver: bridge
+volumes:
+  laravel-asterisk-mysql:
+    driver: local

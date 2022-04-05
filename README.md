@@ -29,7 +29,11 @@ composer require paxha/laravel-asterisk
 You have to simply add a service in `docker-compose.yml`.
 
 ```
-services:    
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    # ...
+
     asterisk:
         build:
             context: ./vendor/paxha/laravel-asterisk/runtimes
@@ -49,6 +53,10 @@ services:
             - sail
         depends_on:
             - mysql 
+
+networks:
+    sail:
+        driver: bridge
 ```
 
 And then
